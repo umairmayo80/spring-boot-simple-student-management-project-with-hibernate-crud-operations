@@ -14,14 +14,18 @@ public class Student {
     private String name;
     private String email;
     private LocalDate dob;
+
+    private long bill;
     @Transient
     private Integer age;
 
-    public Student(Long id, String name, String email, LocalDate dob, Integer age) {
+
+    public Student(Long id, String name, String email, LocalDate dob, long bill, Integer age) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.dob = dob;
+        this.bill = bill;
         this.age = age;
     }
 
@@ -29,14 +33,12 @@ public class Student {
     }
 
 
-    public Student(String name, String email, LocalDate dob) {
+    public Student(String name, String email, LocalDate dob, long bill) {
         this.name = name;
         this.email = email;
         this.dob = dob;
+        this.bill = bill;
     }
-
-
-
 
     public Long getId() {
         return id;
@@ -82,6 +84,13 @@ public class Student {
         return Period.between(this.dob,LocalDate.now()).getYears();
     }
 
+    public long getBill() {
+        return bill;
+    }
+
+    public void setBill(long bill) {
+        this.bill = bill;
+    }
 
     @Override
     public String toString() {
@@ -89,7 +98,9 @@ public class Student {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
-                ", age='" + getAge() + '\'' +
+                ", dob=" + dob +
+                ", bill=" + bill +
+                ", age=" + age +
                 '}';
     }
 }

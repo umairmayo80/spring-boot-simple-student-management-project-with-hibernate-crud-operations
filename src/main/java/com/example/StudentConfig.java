@@ -4,7 +4,6 @@ import com.example.respository.StudentRepo;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
 import java.time.LocalDate;
 import java.util.List;
 
@@ -22,10 +21,13 @@ public class StudentConfig {
     @Bean
     CommandLineRunner commandLineRunner(StudentRepo studentRepo){
         return args ->{
-            Student s1 = new Student("Ali","Ali@.com", LocalDate.parse("2001-01-01"));
+            Student s1 = new Student("Ali","Ali@.com", LocalDate.parse("2001-01-01"), 1000);
 
-            Student s2 = new Student("Umer","Umer@.com",LocalDate.parse("2005-01-01"));
-            studentRepo.saveAll(List.of(s1,s2));
+            Student s2 = new Student("Umer","Umer@.com",LocalDate.parse("2005-01-01"),1500);
+
+            Student s3 = new Student("Khan","khan@.com",LocalDate.parse("2003-01-01"),3500);
+
+            studentRepo.saveAll(List.of(s1,s2,s3));
         };
 
     }

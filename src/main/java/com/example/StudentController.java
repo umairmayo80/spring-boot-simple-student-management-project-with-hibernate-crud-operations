@@ -27,7 +27,42 @@ public class StudentController {
     }
 
     @PostMapping
-    public void registerNewStudent(@RequestBody Student student) throws Exception {
+    public void registerNewStudent(@RequestParam("username") String username, @RequestParam("password") String password,
+                                       @RequestBody Student student) throws Exception {
+
+        // user = user.login()
+        // if(user.present())
+        // role = user.getRole()
+        // if(role == 'admin')
         studentService.add(student);
     }
+
+
+    @DeleteMapping(path = "{studentId}")
+    public void deleteStudent(@PathVariable("studentId") Long id){
+        studentService.delete(id);
+    }
+
+
+    @PutMapping(path = "{studentId}")
+    public void updateStudent(
+            @PathVariable("studentId") Long studentId,
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String email) {
+        studentService.updateStudent(studentId,name,email);
+    }
+
+    @GetMapping("/findByBillBetween")
+    public List<Student> findByBillBetween(
+            @RequestParam("minBill") Long minBill,
+            @RequestParam("maxBill") Long maxBill){
+        return studentService.getStudentByBillBetween(minBill,maxBill);
+    }
+
+
+
+
+
+
+
 }
